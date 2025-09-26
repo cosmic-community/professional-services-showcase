@@ -9,7 +9,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
   
   return (
     <div className="card group hover:border-primary-200 transition-all duration-300">
-      {metadata?.images && metadata.images.length > 0 && (
+      {metadata?.images && metadata.images.length > 0 && metadata.images[0]?.imgix_url && (
         <div className="mb-6 -mx-6 -mt-6">
           <img
             src={`${metadata.images[0].imgix_url}?w=600&h=300&fit=crop&auto=format,compress`}

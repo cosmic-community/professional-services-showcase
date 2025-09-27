@@ -1,17 +1,9 @@
-import Hero from '@/components/Hero'
-import ServicesSection from '@/components/ServicesSection'
-import TeamSection from '@/components/TeamSection'
-import TestimonialsSection from '@/components/TestimonialsSection'
-import CaseStudiesSection from '@/components/CaseStudiesSection'
+import Game from '@/components/Game'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <ServicesSection />
-      <TeamSection />
-      <CaseStudiesSection />
-      <TestimonialsSection />
+    <div className="min-h-screen bg-gray-900">
+      <Game />
     </div>
   )
 }

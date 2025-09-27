@@ -1,5 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk'
-import { Service, TeamMember, Testimonial, CaseStudy } from '@/types'
+import { GameCharacter, GameBiome, GameRecipe } from '@/types/game'
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -12,128 +12,95 @@ function hasStatus(error: unknown): error is { status: number } {
   return typeof error === 'object' && error !== null && 'status' in error;
 }
 
-// Fetch all services
-export async function getServices(): Promise<Service[]> {
+// Fetch all game characters
+export async function getGameCharacters(): Promise<GameCharacter[]> {
   try {
     const response = await cosmic.objects
-      .find({ type: 'services' })
+      .find({ type: 'game-characters' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects as Service[];
+    return response.objects as GameCharacter[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
     }
-    console.error('Error fetching services:', error);
-    throw new Error('Failed to fetch services');
+    console.error('Error fetching game characters:', error);
+    throw new Error('Failed to fetch game characters');
   }
 }
 
-// Fetch single service by slug
-export async function getService(slug: string): Promise<Service | null> {
+// Fetch single game character by slug
+export async function getGameCharacter(slug: string): Promise<GameCharacter | null> {
   try {
     const response = await cosmic.objects
-      .findOne({ type: 'services', slug })
+      .findOne({ type: 'game-characters', slug })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.object as Service;
+    return response.object as GameCharacter;
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return null;
     }
-    console.error('Error fetching service:', error);
-    throw new Error('Failed to fetch service');
+    console.error('Error fetching game character:', error);
+    throw new Error('Failed to fetch game character');
   }
 }
 
-// Fetch all team members
-export async function getTeamMembers(): Promise<TeamMember[]> {
+// Fetch all game biomes
+export async function getGameBiomes(): Promise<GameBiome[]> {
   try {
     const response = await cosmic.objects
-      .find({ type: 'team-members' })
+      .find({ type: 'game-biomes' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects as TeamMember[];
+    return response.objects as GameBiome[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
     }
-    console.error('Error fetching team members:', error);
-    throw new Error('Failed to fetch team members');
+    console.error('Error fetching game biomes:', error);
+    throw new Error('Failed to fetch game biomes');
   }
 }
 
-// Fetch single team member by slug
-export async function getTeamMember(slug: string): Promise<TeamMember | null> {
+// Fetch all game recipes
+export async function getGameRecipes(): Promise<GameRecipe[]> {
   try {
     const response = await cosmic.objects
-      .findOne({ type: 'team-members', slug })
+      .find({ type: 'game-recipes' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.object as TeamMember;
-  } catch (error) {
-    if (hasStatus(error) && error.status === 404) {
-      return null;
-    }
-    console.error('Error fetching team member:', error);
-    throw new Error('Failed to fetch team member');
-  }
-}
-
-// Fetch all testimonials
-export async function getTestimonials(): Promise<Testimonial[]> {
-  try {
-    const response = await cosmic.objects
-      .find({ type: 'testimonials' })
-      .props(['id', 'title', 'slug', 'metadata'])
-      .depth(1);
-    
-    return response.objects as Testimonial[];
+    return response.objects as GameRecipe[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
     }
-    console.error('Error fetching testimonials:', error);
-    throw new Error('Failed to fetch testimonials');
+    console.error('Error fetching game recipes:', error);
+    throw new Error('Failed to fetch game recipes');
   }
 }
 
-// Fetch all case studies
-export async function getCaseStudies(): Promise<CaseStudy[]> {
+// Save player progress
+export async function savePlayerProgress(playerData: {
+  player_name: string
+  level: number
+  experience: number
+  current_day: number
+  inventory: string
+  stats: string
+}): Promise<void> {
   try {
-    const response = await cosmic.objects
-      .find({ type: 'case-studies' })
-      .props(['id', 'title', 'slug', 'metadata'])
-      .depth(1);
-    
-    return response.objects as CaseStudy[];
+    await cosmic.objects.insertOne({
+      title: `${playerData.player_name} - Day ${playerData.current_day}`,
+      type: 'player-progress',
+      metadata: playerData
+    });
   } catch (error) {
-    if (hasStatus(error) && error.status === 404) {
-      return [];
-    }
-    console.error('Error fetching case studies:', error);
-    throw new Error('Failed to fetch case studies');
-  }
-}
-
-// Fetch single case study by slug
-export async function getCaseStudy(slug: string): Promise<CaseStudy | null> {
-  try {
-    const response = await cosmic.objects
-      .findOne({ type: 'case-studies', slug })
-      .props(['id', 'title', 'slug', 'metadata'])
-      .depth(1);
-    
-    return response.object as CaseStudy;
-  } catch (error) {
-    if (hasStatus(error) && error.status === 404) {
-      return null;
-    }
-    console.error('Error fetching case study:', error);
-    throw new Error('Failed to fetch case study');
+    console.error('Error saving player progress:', error);
+    throw new Error('Failed to save player progress');
   }
 }

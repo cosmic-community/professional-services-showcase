@@ -1,55 +1,73 @@
-# Professional Services Showcase
+# Don't Starve - Survival Game
 
-![App Preview](https://imgix.cosmicjs.com/e924e860-9adf-11f0-bd7f-6563eeca07df-photo-1460925895917-afdab827c52f-1758894688358.jpg?w=1200&h=300&fit=crop&auto=format,compress)
+![Game Preview](https://images.unsplash.com/photo-1556942154-006c19b71fb4?w=1200&h=300&fit=crop&auto=format,compress)
 
-A modern, responsive web application that showcases professional services, team expertise, client testimonials, and case studies. Built with Next.js and powered by Cosmic CMS for dynamic content management.
+A browser-based survival game inspired by Don't Starve. Gather resources, craft tools, manage your stats, and survive in a mysterious procedurally generated world. Built with Next.js, TypeScript, and Canvas rendering.
 
-## Features
+## 🎮 Game Features
 
-- **Services Portfolio** - Comprehensive service listings with descriptions, features, and pricing
-- **Team Showcase** - Professional team member profiles with skills and experience
-- **Client Testimonials** - Customer feedback with ratings and company information
-- **Case Studies** - Detailed project breakdowns with results and metrics
-- **Responsive Design** - Optimized for all devices and screen sizes
-- **Modern UI/UX** - Clean, professional design with smooth animations
-- **SEO Optimized** - Structured data and meta tags for search engines
-- **Fast Performance** - Optimized images and efficient code structure
+- **Survival Mechanics** - Manage health, hunger, and sanity to stay alive
+- **Resource Gathering** - Harvest wood, stone, berries, and other materials
+- **Crafting System** - Create tools, weapons, and structures from gathered resources
+- **Day/Night Cycle** - Experience changing times of day with different challenges
+- **Seasonal Changes** - Adapt to spring, summer, autumn, and winter seasons
+- **Inventory Management** - Organize items in a 9-slot hotbar and full inventory
+- **Experience System** - Level up by gathering resources and surviving
+- **Procedural World** - Randomly generated trees, rocks, and berry bushes
+- **Interactive UI** - Comprehensive game interface with stats, crafting, and inventory
 
-## Clone this Project
+## 🎯 Game Controls
 
-Want to create your own version of this project with all the content and structure? Clone this Cosmic bucket and code repository to get started instantly:
+- **WASD** - Move your character
+- **Mouse Click** - Harvest resources from objects
+- **Space** - Use selected item
+- **E** - Interact with nearby objects
+- **1-9** - Select inventory slots
+- **Tab** - Toggle inventory
+- **C** - Toggle crafting menu
+- **ESC** - Pause game
 
-[![Clone this Project](https://img.shields.io/badge/Clone%20this%20Project-29abe2?style=for-the-badge&logo=cosmic&logoColor=white)](https://app.cosmicjs.com/projects/new?clone_bucket=68d699bfe4b13704227fb84f&clone_repository=68d69b80e4b13704227fb875)
+## 🛠️ Crafting Recipes
 
-## Prompts
+### Tools
+- **Axe**: 2 Wood + 1 Flint
+- **Pickaxe**: 2 Wood + 2 Flint
+- **Spear**: 1 Wood + 1 Flint
 
-This application was built using the following prompts to generate the content structure and code:
+### Structures
+- **Campfire**: 3 Wood + 2 Stone
+- **Chest**: 8 Wood
+- **Wooden Wall**: 4 Wood
 
-### Content Model Prompt
+## 🌍 Game World
 
-> "Create a content model for a company website with services, team members, testimonials, and case studies. "A verdadeira generosidade para com o futuro consiste em dar tudo ao presente" (Albert Camus)"
+The game world consists of:
+- **🌲 Trees** - Harvest for wood and leaves
+- **🪨 Rocks** - Mine for stone and flint
+- **🫐 Berry Bushes** - Gather berries to restore hunger
+- **🧑 Player Character** - Your avatar in the world
 
-### Code Generation Prompt
+## 📈 Survival Stats
 
-> "Based on the content model I created for "Create a content model for a company website with services, team members, testimonials, and case studies. "A verdadeira generosidade para com o futuro consiste em dar tudo ao presente" (Albert Camus)", now build a complete web application that showcases this content. Include a modern, responsive design with proper navigation, content display, and user-friendly interface."
+- **❤️ Health** - Decreases when starving, causes death at 0
+- **🍖 Hunger** - Decreases over time, eat berries to restore
+- **🧠 Sanity** - Decreases at night and in winter, restore during day
 
-The app has been tailored to work with your existing Cosmic content structure and includes all the features requested above.
-
-## Technologies Used
+## 🏗️ Technologies Used
 
 - **Next.js 15** - React framework with App Router
 - **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first CSS framework
-- **Cosmic CMS** - Headless content management
-- **React** - Component-based UI library
+- **HTML5 Canvas** - 2D game rendering
+- **Tailwind CSS** - UI styling
+- **Cosmic CMS** - Optional content management for game data
+- **Custom Game Engine** - Built from scratch for Don't Starve-like mechanics
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js 18+ 
 - Bun package manager
-- Cosmic account with content
 
 ### Installation
 
@@ -59,7 +77,7 @@ The app has been tailored to work with your existing Cosmic content structure an
    bun install
    ```
 
-3. Set up environment variables:
+3. (Optional) Set up Cosmic CMS environment variables:
    ```env
    COSMIC_BUCKET_SLUG=your-bucket-slug
    COSMIC_READ_KEY=your-read-key
@@ -71,59 +89,38 @@ The app has been tailored to work with your existing Cosmic content structure an
    bun run dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) to view the application
+5. Open [http://localhost:3000](http://localhost:3000) to start playing
 
-## Cosmic SDK Examples
+## 🎮 Game Mechanics
 
-### Fetching Services
-```typescript
-const services = await cosmic.objects
-  .find({ type: 'services' })
-  .props(['id', 'title', 'slug', 'metadata'])
-  .depth(1);
-```
+### Resource Management
+- Gather basic resources like wood, stone, and flint
+- Use resources to craft tools and structures
+- Manage limited inventory space efficiently
 
-### Getting Team Members
-```typescript
-const teamMembers = await cosmic.objects
-  .find({ type: 'team-members' })
-  .props(['id', 'title', 'slug', 'metadata'])
-  .depth(1);
-```
+### Survival Systems
+- Monitor health, hunger, and sanity levels
+- Eat food to restore hunger and prevent health loss
+- Stay near light sources at night to maintain sanity
 
-### Loading Testimonials
-```typescript
-const testimonials = await cosmic.objects
-  .find({ type: 'testimonials' })
-  .props(['id', 'title', 'slug', 'metadata'])
-  .depth(1);
-```
+### Progression
+- Gain experience by harvesting resources
+- Level up to unlock new crafting recipes
+- Survive longer to see seasonal changes
 
-## Cosmic CMS Integration
+### Environmental Hazards
+- Night time reduces visibility and sanity
+- Winter season increases sanity drain
+- Starvation causes health to decrease over time
 
-This application integrates with your Cosmic bucket to display:
+## 🔧 Game Architecture
 
-- **Services** - Service offerings with descriptions, features, and pricing
-- **Team Members** - Team profiles with photos, bios, and skills
-- **Testimonials** - Client feedback with ratings and company logos  
-- **Case Studies** - Detailed project case studies with metrics and results
+### Core Components
+- **GameEngine** - Main game loop, physics, and logic
+- **Canvas Renderer** - 2D graphics and animations
+- **Player Controller** - Input handling and movement
+- **Inventory System** - Item management and storage
+- **Crafting System** - Recipe management and item creation
+- **Stats Manager** - Health, hunger, and sanity tracking
 
-Content is fetched server-side for optimal performance and SEO. The application handles loading states, error conditions, and responsive image optimization.
-
-## Deployment Options
-
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables in Vercel dashboard
-3. Deploy automatically on push to main branch
-
-### Netlify
-1. Connect repository to Netlify
-2. Set build command: `bun run build`
-3. Configure environment variables
-4. Deploy
-
-### Other Platforms
-This Next.js application can be deployed to any platform that supports Node.js applications.
-
-<!-- README_END -->
+### File Structure
